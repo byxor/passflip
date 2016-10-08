@@ -1,9 +1,15 @@
 import sys
 from getpass import getpass
-from mutation import mutate
+from passflip.mutation import mutate
 
 
-def main(argc, argv):
+__version__ = "0.5.0"
+
+
+def main():
+
+    argv = sys.argv
+    argc = len(argv)
 
     if argc > 0 and argv[0] == "--help":
         display_help()
@@ -34,10 +40,4 @@ def display_help():
     print("password: secret123")
     print("salt: twitter")
     print()
-
-
-if __name__ == "__main__":
-    argv = sys.argv[1:]
-    argc = len(argv)
-    main(argc, argv)
 

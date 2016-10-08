@@ -1,5 +1,5 @@
 import unittest
-from mutation import mutate
+from passflip.mutation import mutate
 
 
 class MutatorTest(unittest.TestCase):
