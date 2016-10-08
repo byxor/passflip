@@ -2,23 +2,19 @@ import re
 from setuptools import setup
 
 
-version = re.search(
-    '^__version__\s*=\s*"(.*)"',
-    open("passflip/passflip.py").read(),
-    re.M
-).group(1)
-
-
-with open("README.md", "rb") as f:
+with open("README.rst", "rb") as f:
     long_description = f.read().decode("utf-8")
 
+
 setup(
-    name = "cmdline-passflip",
+    name = "passflip",
     packages = ["passflip"],
-    entry_points = {
-        "console_scripts": ["passflip = passflip.passflip:main"]
-    },
-    version = version,
+    entry_points = """
+        [console_scripts]
+        passflip=passflip.passflip:main
+    """,
+    license = "GPLv3",
+    version = "0.5.7",
     description = "Command line tool to mutate passwords for different websites.",
     long_description = long_description,
     author = "Brandon Ibbotson",

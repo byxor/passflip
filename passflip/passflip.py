@@ -1,9 +1,6 @@
 import sys
 from getpass import getpass
-from passflip.mutation import mutate
-
-
-__version__ = "0.5.0"
+from .mutation import mutate
 
 
 def main():
