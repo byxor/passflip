@@ -10,7 +10,7 @@ setup(
         passflip=passflip.passflip:main
     """,
     license = "GPLv3",
-    version = "0.5.7",
+    version = "0.5.81",
     description = "Command line tool to mutate passwords for different websites.",
     author = "Brandon Ibbotson",
     author_email = "brandon.ibbotson2@mail.dcu.ie",
