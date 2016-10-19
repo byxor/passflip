@@ -21,3 +21,7 @@ Installable via pip:
 3. Enter your salt (e.g. `twitter`)
 
 The program will then return your unique secured password for twitter.
+
+## Contribution
+
+See anything you want to improve? Want to add any features? Make a pull request and I'll be happy to accept it if it's good.
