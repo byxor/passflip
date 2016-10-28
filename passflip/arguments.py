@@ -4,7 +4,7 @@ from argparse import ArgumentParser
 class PassflipArgumentParser(ArgumentParser):
 
     def __init__(self):
-        super().__init__()
+        super(PassflipArgumentParser, self).__init__()
         self.init_arguments()
 
     def init_arguments(self):
