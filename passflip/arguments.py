@@ -11,7 +11,14 @@ class PassflipArgumentParser(ArgumentParser):
         self.add_argument(
             "-c",
             "--check",
-            action='store_true',
+            action="store_true",
             help="prompt for password & salt twice."
+        )
+        self.add_argument(
+            "-l",
+            "--length",
+            action="store",
+            nargs="?",
+            help="limit the length of the output password"
         )
 

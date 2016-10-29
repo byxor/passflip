@@ -22,6 +22,12 @@ Installable via pip:
 
 The program will then return your unique secured password for twitter.
 
+## Tips
+
+* You can enable "check" mode with the `-c` or `--check` option. This requires input to be entered twice.
+
+* You can limit the length of a password using the `-l <number>` option.
+
 ## Contribution
 
 See anything you want to improve? Want to add any features? Make a pull request and I'll be happy to accept it if it's good.
