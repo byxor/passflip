@@ -1,4 +1,4 @@
-[![PyPI version](https://badge.fury.io/py/passflip.svg)](https://badge.fury.io/py/passflip)
+[![PyPI version](https://badge.fury.io/py/passflip.svg)](https://badge.fury.io/py/passflip) [![PyPI](https://img.shields.io/pypi/dm/passflip.svg)]()
 
 # passflip
 
