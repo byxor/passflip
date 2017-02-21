@@ -1,3 +1,5 @@
+[![PyPI version](https://badge.fury.io/py/passflip.svg)](https://badge.fury.io/py/passflip)
+
 # passflip
 
 An easy-to-use command-line tool that lets you secure your passwords.
