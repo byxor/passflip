@@ -3,20 +3,21 @@ from .mutation import mutate
 from .arguments import PassflipArgumentParser
 from .input import prompt_password, prompt_salt
 
+
 def main():
     argument_parser = PassflipArgumentParser()
     arguments = argument_parser.parse_args()
-    
+
     if arguments.check is True:
         input_ = prompt_with_double_check()
     else:
-        input_ = prompt_in_default_mode() 
-    
+        input_ = prompt_in_default_mode()
+
     if input_ is None:
         return
 
     output = mutate(input_[0], input_[1])
-    
+
     if arguments.length is not None:
         output = output[:int(arguments.length)]
 
@@ -41,4 +42,3 @@ def prompt_in_default_mode():
     password = prompt_password()
     salt = prompt_salt()
     return (password, salt)
-

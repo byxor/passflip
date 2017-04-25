@@ -20,4 +20,3 @@ def prompt_password(again=False):
 
 def prompt_salt(again=False):
     return prompt("enter salt", again)
-

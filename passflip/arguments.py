@@ -21,4 +21,3 @@ class PassflipArgumentParser(ArgumentParser):
             nargs="?",
             help="limit the length of the output password"
         )
-
