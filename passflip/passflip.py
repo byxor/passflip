@@ -8,20 +8,23 @@ def main():
     argument_parser = PassflipArgumentParser()
     arguments = argument_parser.parse_args()
 
-    if arguments.check is True:
-        input_ = prompt_with_double_check()
-    else:
-        input_ = prompt_in_default_mode()
+    password = prompt_password(arguments.check)
 
-    if input_ is None:
-        return
+    while True:
+        salt = prompt_salt(arguments.check)
 
-    output = mutate(input_[0], input_[1])
+        if password is None or salt is None:
+            return
 
-    if arguments.length is not None:
-        output = output[:int(arguments.length)]
+        output = mutate(password, salt)
 
-    print(output)
+        if arguments.length is not None:
+            output = output[:int(arguments.length)]
+
+        print(output)
+
+        if salt is None or not arguments.multiple:
+            break
 
 
 def prompt_with_double_check():

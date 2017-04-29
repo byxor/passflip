@@ -15,6 +15,12 @@ class PassflipArgumentParser(ArgumentParser):
             help="prompt for password & salt twice."
         )
         self.add_argument(
+            "-m",
+            "--multiple",
+            action="store_true",
+            help="prompt forever until input is blank"
+        )
+        self.add_argument(
             "-l",
             "--length",
             action="store",
