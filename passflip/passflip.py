@@ -1,30 +1,35 @@
 import sys
 from .mutation import mutate
 from .arguments import PassflipArgumentParser
-from .input import prompt_password, prompt_salt
+from .input import prompt_password, prompt_salt, PromptError
 
 
 def main():
     argument_parser = PassflipArgumentParser()
     arguments = argument_parser.parse_args()
 
-    password = prompt_password(arguments.check)
+    try:
+        password = prompt_password(arguments.check)
+    except PromptError as e:
+        print(e)
+        return -1
 
     while True:
-        salt = prompt_salt(arguments.check)
-
-        if password is None or salt is None:
-            return
-
+        try:
+            salt = prompt_salt(arguments.check)
+        except PromptError as e:
+            if arguments.multiple:
+                break
+            else:
+                print(e)
+                return -1
         output = mutate(password, salt)
-
         if arguments.length is not None:
             output = output[:int(arguments.length)]
-
         print(output)
-
-        if salt is None or not arguments.multiple:
+        if not arguments.multiple:
             break
+    return 0
 
 
 def prompt_with_double_check():
