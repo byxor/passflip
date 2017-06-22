@@ -30,6 +30,8 @@ The program will then return your unique secured password for twitter.
 
 * You can limit the length of a password using the `-l <number>` option.
 
+* You can automatically copy the password to the clipboard (on linux with xclip installed) using `passflip | sed '$!d' | xclip -selection clipboard`. _This is planned to be added as a proper feature later (across all platforms)._
+
 ## Contribution
 
 See anything you want to improve? Want to add any features? Make a pull request and I'll be happy to accept it if it's good.
