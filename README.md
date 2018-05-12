@@ -22,7 +22,7 @@ Installable via pip:
 
 3. Enter your salt (e.g. `twitter`)
 
-The program will then return your unique secured password for twitter.
+The program will then give you your unique secured password for twitter.
 
 ## Tips
 
