@@ -11,7 +11,7 @@ setup(
     """,
     license = "GPLv3",
     version = "0.7",
-    description = "Command line tool to mutate passwords for different websites.",
+    description = "Command line tool to mutate passwords for different websites/services.",
     author = "Brandon Ibbotson",
     url = "https://www.github.com/byxor/passflip"
 )
