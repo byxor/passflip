@@ -1,28 +1,52 @@
 from unittest import TestCase
-from passflip.input import create_prompt_message
+import passflip.input
 
+try:
+    import mock
+except ImportError:
+    from unittest import mock
 
-class InputPromptMessageTest(TestCase):
+class PromptTest(TestCase):
 
-    def test_that_colon_is_added_to_message(self):
-        self.given_the_message("Foo")
-        self.when_converted_to_a_prompt_message()
-        self.then_the_result_will_be("Foo: ")
+    def setUp(self):
+        self.validate = False;
 
-    def test_that_again_is_added_to_message(self):
-        self.given_the_message("Foo")
-        self.when_converted_to_a_prompt_message_with_again()
-        self.then_the_result_will_be("Foo again: ")
+    def test_that_user_can_input_password(self):
+        expected = "foocar"
+        self.when_user_is_prompted_for_password_and_they_input(expected)
+        self.then_the_inputed_value_will_equal(expected)
 
-    def given_the_message(self, message):
-        self.message = message
+    def test_that_user_can_input_salt(self):
+        expected = "barnod"
+        self.when_user_is_prompted_for_salt_and_they_input(expected)
+        self.then_the_inputed_value_will_equal(expected)
 
-    def when_converted_to_a_prompt_message(self):
-        self.prompt_message = create_prompt_message(self.message)
+    def test_that_empty_input_raises_input_error(self):
+        expected = ""
+        self.when_user_is_prompted_they_input(expected)
+        self.then_empty_string_error_is_raised()
 
-    def when_converted_to_a_prompt_message_with_again(self):
-        self.prompt_message = create_prompt_message(self.message, again=True)
+    def when_user_is_prompted_they_input(self, expected):
+        with mock.patch.object(passflip.input, "getpass", create=True, return_value=expected) as m:
+            try:
+                self.input = passflip.input.prompt_input("false message", self.validate)
+                m.assert_called_once_with('enter password: ')
+            except passflip.input.PromptError as e:
+                self.error = e
 
-    def then_the_result_will_be(self, expected):
-        self.assertEqual(expected, self.prompt_message)
+    def when_user_is_prompted_for_password_and_they_input(self, expected):
+        with mock.patch.object(passflip.input, "getpass", create=True, return_value=expected) as m:
+            self.input = passflip.input.prompt_password(self.validate)
+            m.assert_called_once_with('enter password: ')
 
+    def when_user_is_prompted_for_salt_and_they_input(self, expected):
+        with mock.patch.object(passflip.input, "getpass", create=True, return_value=expected) as m:
+            self.input = passflip.input.prompt_salt(self.validate)
+            m.assert_called_once_with('enter salt: ')
+
+    def then_the_inputed_value_will_equal(self, expected):
+        self.assertEqual(self.input, expected)
+        self.input = None
+
+    def then_empty_string_error_is_raised(self):
+        self.assertEqual(str(self.error), "error: cannot enter empty string")

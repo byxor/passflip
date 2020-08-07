@@ -1,23 +1,29 @@
 from getpass import getpass
 
 
-def create_prompt_message(message, again=False):
-    prompt_message = message
-    if again:
-        prompt_message += " again"
-    prompt_message += ": "
-    return prompt_message
+class PromptError(Exception):
+    """
+    Raise this error if the user inputs something invalid
+
+    eg: raise PromptError("you're input is whack yo")
+    """
 
 
-def prompt(message, again=False):
-    prompt_message = create_prompt_message(message, again)
-    return getpass(prompt_message)
+def prompt_input(message, validate):
+    first_input = getpass(message + ': ')
+    if len(first_input) == 0:
+        raise PromptError("error: cannot enter empty string")
+    if not validate:
+        return first_input
+    second_input = getpass(message + ' again: ')
+    if first_input != second_input:
+        raise PromptError("error: mismatching input")
+    return first_input
 
 
-def prompt_password(again=False):
-    return prompt("enter password", again)
+def prompt_password(validate):
+    return prompt_input("enter password", validate)
 
 
-def prompt_salt(again=False):
-    return prompt("enter salt", again)
-
+def prompt_salt(validate):
+    return prompt_input("enter salt", validate)
